@@ -1,0 +1,61 @@
+
+[2026-10-24T06:23:58Z]
+    PID    PPID    PGID STAT %CPU %MEM   RSS     ELAPSED COMMAND
+   4028    4018    4028 Rs    0.0  0.0  1012       00:00 agent-leak-app
+    PID     TID    PGID STAT WCHAN                        TIME COMMAND
+   4028    4028    4028 Rs   -                        00:00:00 agent-leak-app
+
+[2026-10-24T06:24:08Z]
+    PID    PPID    PGID STAT %CPU %MEM   RSS     ELAPSED COMMAND
+   4028    4018    4028 Ss    0.6  0.0  1044       00:10 agent-leak-app
+   4050    4028    4028 SNl   1.0  1.5 93628       00:09 agent-leak-app
+    PID     TID    PGID STAT WCHAN                        TIME COMMAND
+   4028    4028    4028 Ss   do_wait                  00:00:00 agent-leak-app
+   4050    4050    4028 SNl  futex_wait               00:00:00 agent-leak-app
+   4050    4113    4028 SNl  do_select                00:00:00 agent-leak-app
+   4050    4114    4028 SNl  do_select                00:00:00 agent-leak-app
+LISTEN 0      0      0.0.0.0:15034 0.0.0.0:*
+
+[2026-10-24T06:24:18Z]
+    PID    PPID    PGID STAT %CPU %MEM   RSS     ELAPSED COMMAND
+   4028    4018    4028 Ss    0.3  0.0  1044       00:20 agent-leak-app
+   4050    4028    4028 SNl   1.3  2.7 170440      00:20 agent-leak-app
+    PID     TID    PGID STAT WCHAN                        TIME COMMAND
+   4028    4028    4028 Ss   do_wait                  00:00:00 agent-leak-app
+   4050    4050    4028 SNl  futex_wait               00:00:00 agent-leak-app
+   4050    4113    4028 SNl  do_select                00:00:00 agent-leak-app
+   4050    4114    4028 SNl  do_select                00:00:00 agent-leak-app
+LISTEN 0      0      0.0.0.0:15034 0.0.0.0:*
+
+[2026-10-24T06:24:28Z]
+    PID    PPID    PGID STAT %CPU %MEM   RSS     ELAPSED COMMAND
+   4028    4018    4028 Ss    0.2  0.0  1044       00:30 agent-leak-app
+   4050    4028    4028 SNl   2.0  4.0 247252      00:30 agent-leak-app
+    PID     TID    PGID STAT WCHAN                        TIME COMMAND
+   4028    4028    4028 Ss   do_wait                  00:00:00 agent-leak-app
+   4050    4050    4028 SNl  futex_wait               00:00:00 agent-leak-app
+   4050    4113    4028 SNl  do_select                00:00:00 agent-leak-app
+   4050    4114    4028 SNl  do_select                00:00:00 agent-leak-app
+LISTEN 0      0      0.0.0.0:15034 0.0.0.0:*
+
+[2026-10-24T06:24:38Z]
+    PID    PPID    PGID STAT %CPU %MEM   RSS     ELAPSED COMMAND
+   4028    4018    4028 Ss    0.1  0.0  1044       00:40 agent-leak-app
+   4050    4028    4028 SNl   2.4  5.7 349668      00:40 agent-leak-app
+    PID     TID    PGID STAT WCHAN                        TIME COMMAND
+   4028    4028    4028 Ss   do_wait                  00:00:00 agent-leak-app
+   4050    4050    4028 SNl  futex_wait               00:00:00 agent-leak-app
+   4050    4113    4028 SNl  do_select                00:00:00 agent-leak-app
+   4050    4114    4028 SNl  do_select                00:00:00 agent-leak-app
+LISTEN 0      0      0.0.0.0:15034 0.0.0.0:*
+
+[2026-10-24T06:24:48Z]
+    PID    PPID    PGID STAT %CPU %MEM   RSS     ELAPSED COMMAND
+   4028    4018    4028 Ss    0.1  0.0  1044       00:50 agent-leak-app
+   4050    4028    4028 SNl   2.4  7.0 426480      00:50 agent-leak-app
+    PID     TID    PGID STAT WCHAN                        TIME COMMAND
+   4028    4028    4028 Ss   do_wait                  00:00:00 agent-leak-app
+   4050    4050    4028 SNl  futex_wait               00:00:00 agent-leak-app
+   4050    4113    4028 SNl  do_select                00:00:00 agent-leak-app
+   4050    4114    4028 SNl  do_select                00:00:00 agent-leak-app
+LISTEN 0      0      0.0.0.0:15034 0.0.0.0:*

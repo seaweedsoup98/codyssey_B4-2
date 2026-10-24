@@ -29,3 +29,14 @@
 2. `scripts/setup.sh` → `scripts/run_case.sh` → `scripts/monitor.sh` 순서로 함수 흐름 추적.
 3. 각 Issue에서 **원본 증거 → 원인 추론 → 변경 설정 → 검증 결과**를 보여 주기.
 4. 실제 수집되지 않은 수치는 발표하지 않기. `reason=observation_limit`와 앱 자체 종료를 엄격히 구분.
+
+## 실제 관측에 대한 추가 질문
+
+| 질문 | 답변 핵심 | 증거 |
+| --- | --- | --- |
+| OOM은 몇 초 만에 종료됐나? | 256MB에서 **33초**. 앱 Heap `275MB`, RSS `266.22MiB`로 증가한 뒤 MemoryGuard 로그와 함께 `exit_code=137`. | [`OOM Before`](../evidence/oom-before/), Issue #1 |
+| 512MB 조치는 누수를 해결했나? | 아니며, 50초 동안 생존했지만 Heap 400MB/RSS 416.46MiB로 증가. **실험기**가 관찰을 종료함. | [`OOM After`](../evidence/oom-after/), Issue #1 |
+| CPU 사용률이 실제로 52%였나? | 아니다. 52.07%는 앱 내부 `Current Load`, OS 측정 최대 5.94% (작업 PID 최대 3.96%). CPU 포화 또는 지연을 입증하지 못했다. | [`CPU Before`](../evidence/cpu-before/), Issue #2 |
+| CPU 종료가 Watchdog 때문이라고 단정할 수 있나? | `CPU Threshold Violated!`와 직후의 앱 종료·코드 143은 앱 보호 종료 근거다. 다만 **발신 신호까지 독립 식별한 것은 아니다**. | [`CPU Before`](../evidence/cpu-before/application.log), `result.txt` |
+| Deadlock의 결정적 근거는? | Thread-1이 Memory A 보유·Socket B 대기, Thread-2가 Socket B 보유·Memory A 대기. PID 유지·futex_wait·RSS 정체가 보조 증거. | [`Deadlock Before`](../evidence/deadlock-before/), Issue #3 |
+| 멀티스레드를 끈 뒤 어떤 근거로 정상이라고 하나? | `Scheduler All tasks completed`와 50초 생존, 동일 시간대 로그 진행을 확인했다. | [`Deadlock After`](../evidence/deadlock-after/), Issue #3 |

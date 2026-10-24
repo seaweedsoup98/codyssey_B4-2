@@ -1,0 +1,37 @@
+
+[2026-10-24T06:23:24Z]
+    PID    PPID    PGID STAT %CPU %MEM   RSS     ELAPSED COMMAND
+   3242    3232    3242 Rs    0.0  0.0  1008       00:00 agent-leak-app
+    PID     TID    PGID STAT WCHAN                        TIME COMMAND
+   3242    3242    3242 Rs   -                        00:00:00 agent-leak-app
+
+[2026-10-24T06:23:34Z]
+    PID    PPID    PGID STAT %CPU %MEM   RSS     ELAPSED COMMAND
+   3242    3232    3242 Ss    0.5  0.0  1040       00:10 agent-leak-app
+   3264    3242    3242 SN    0.9  0.2 16544       00:09 agent-leak-app
+    PID     TID    PGID STAT WCHAN                        TIME COMMAND
+   3242    3242    3242 Ss   do_wait                  00:00:00 agent-leak-app
+   3264    3264    3242 SN   do_select                00:00:00 agent-leak-app
+LISTEN 0      0      0.0.0.0:15034 0.0.0.0:*
+
+[2026-10-24T06:23:44Z]
+    PID    PPID    PGID STAT %CPU %MEM   RSS     ELAPSED COMMAND
+   3242    3232    3242 Ss    0.2  0.0  1040       00:20 agent-leak-app
+   3264    3242    3242 SN    0.8  0.2 16544       00:20 agent-leak-app
+    PID     TID    PGID STAT WCHAN                        TIME COMMAND
+   3242    3242    3242 Ss   do_wait                  00:00:00 agent-leak-app
+   3264    3264    3242 SN   do_select                00:00:00 agent-leak-app
+LISTEN 0      0      0.0.0.0:15034 0.0.0.0:*
+
+[2026-10-24T06:23:54Z]
+    PID    PPID    PGID STAT %CPU %MEM   RSS     ELAPSED COMMAND
+   3242    3232    3242 Ss    0.1  0.0  1040       00:30 agent-leak-app
+   3264    3242    3242 RN    0.8  0.2 16544       00:30 agent-leak-app
+    PID     TID    PGID STAT WCHAN                        TIME COMMAND
+   3242    3242    3242 Ss   do_wait                  00:00:00 agent-leak-app
+   3264    3264    3242 RN   -                        00:00:00 agent-leak-app
+LISTEN 0      0      0.0.0.0:15034 0.0.0.0:*
+
+[2026-10-24T06:23:58Z]
+    PID    PPID    PGID STAT %CPU %MEM   RSS     ELAPSED COMMAND
+    PID     TID    PGID STAT WCHAN                        TIME COMMAND

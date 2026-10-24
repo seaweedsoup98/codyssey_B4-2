@@ -1,0 +1,50 @@
+
+[2026-10-24T06:24:49Z]
+    PID    PPID    PGID STAT %CPU %MEM   RSS     ELAPSED COMMAND
+   5172    5162    5172 Rs    0.0  0.0  1016       00:00 agent-leak-app
+    PID     TID    PGID STAT WCHAN                        TIME COMMAND
+   5172    5172    5172 Rs   -                        00:00:00 agent-leak-app
+
+[2026-10-24T06:24:59Z]
+    PID    PPID    PGID STAT %CPU %MEM   RSS     ELAPSED COMMAND
+   5172    5162    5172 Ss    0.4  0.0  1048       00:10 agent-leak-app
+   5194    5172    5172 SNl   0.4  0.2 16692       00:10 agent-leak-app
+    PID     TID    PGID STAT WCHAN                        TIME COMMAND
+   5172    5172    5172 Ss   do_wait                  00:00:00 agent-leak-app
+   5194    5194    5172 SNl  futex_wait               00:00:00 agent-leak-app
+   5194    5362    5172 SNl  futex_wait               00:00:00 agent-leak-app
+   5194    5363    5172 SNl  futex_wait               00:00:00 agent-leak-app
+LISTEN 0      0      0.0.0.0:15034 0.0.0.0:*
+
+[2026-10-24T06:25:10Z]
+    PID    PPID    PGID STAT %CPU %MEM   RSS     ELAPSED COMMAND
+   5172    5162    5172 Ss    0.2  0.0  1048       00:20 agent-leak-app
+   5194    5172    5172 SNl   0.1  0.2 16692       00:20 agent-leak-app
+    PID     TID    PGID STAT WCHAN                        TIME COMMAND
+   5172    5172    5172 Ss   do_wait                  00:00:00 agent-leak-app
+   5194    5194    5172 SNl  futex_wait               00:00:00 agent-leak-app
+   5194    5362    5172 SNl  futex_wait               00:00:00 agent-leak-app
+   5194    5363    5172 SNl  futex_wait               00:00:00 agent-leak-app
+LISTEN 0      0      0.0.0.0:15034 0.0.0.0:*
+
+[2026-10-24T06:25:20Z]
+    PID    PPID    PGID STAT %CPU %MEM   RSS     ELAPSED COMMAND
+   5172    5162    5172 Ss    0.1  0.0  1048       00:30 agent-leak-app
+   5194    5172    5172 SNl   0.1  0.2 16692       00:30 agent-leak-app
+    PID     TID    PGID STAT WCHAN                        TIME COMMAND
+   5172    5172    5172 Ss   do_wait                  00:00:00 agent-leak-app
+   5194    5194    5172 SNl  futex_wait               00:00:00 agent-leak-app
+   5194    5362    5172 SNl  futex_wait               00:00:00 agent-leak-app
+   5194    5363    5172 SNl  futex_wait               00:00:00 agent-leak-app
+LISTEN 0      0      0.0.0.0:15034 0.0.0.0:*
+
+[2026-10-24T06:25:30Z]
+    PID    PPID    PGID STAT %CPU %MEM   RSS     ELAPSED COMMAND
+   5172    5162    5172 Ss    0.1  0.0  1048       00:40 agent-leak-app
+   5194    5172    5172 SNl   0.0  0.2 16692       00:40 agent-leak-app
+    PID     TID    PGID STAT WCHAN                        TIME COMMAND
+   5172    5172    5172 Ss   do_wait                  00:00:00 agent-leak-app
+   5194    5194    5172 SNl  futex_wait               00:00:00 agent-leak-app
+   5194    5362    5172 SNl  futex_wait               00:00:00 agent-leak-app
+   5194    5363    5172 SNl  futex_wait               00:00:00 agent-leak-app
+LISTEN 0      0      0.0.0.0:15034 0.0.0.0:*

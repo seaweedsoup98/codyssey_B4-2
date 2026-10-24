@@ -34,7 +34,7 @@
 
 ### 입력·변수 선택
 
-`run_case.sh oom before 120`의 의미는 'OOM의 변경 전 설정으로 최대 120초 동안 관찰'이다. 다른 장애가 결과에 섞이지 않도록 매번 `MEMORY_LIMIT=512`, `CPU_MAX_OCCUPY=40`, `MULTI_THREAD_ENABLE=false`로 초기화한 다음 조사 대상만 바꾼다.
+`run_case.sh oom before 50`의 의미는 'OOM의 변경 전 설정으로 최대 50초 동안 관찰'이다. 다른 장애가 결과에 섞이지 않도록 매번 `MEMORY_LIMIT=512`, `CPU_MAX_OCCUPY=40`, `MULTI_THREAD_ENABLE=false`로 초기화한 다음 조사 대상만 바꾼다.
 
 | 실험 | Before | After | 통제하는 변수 |
 | --- | --- | --- | --- |
@@ -86,3 +86,18 @@ PID는 재사용될 수 있으므로 22번 필드의 시작 tick(`starttime`)도
 - **CPU**: 특정 PID의 CPU 사용률 상승을 `monitor.tsv`에서 확인하고 앱 Watchdog 로그와 대조한다. 앱 로그의 `Current Load`가 OS CPU와 같은 값이라는 가정은 하지 않는다.
 - **Deadlock**: PID가 지속 존재하고 앱 로그는 정체되며, 두 스레드가 서로의 자원을 기다리는 `WAITING/BLOCKED` 로그를 확인한다. `WCHAN=futex...`만으로는 교착상태가 입증되지 않는다.
 - **Before/After**: 같은 바이너리 해시·환경·관찰 구간을 유지하고 **한 변수만 변경**한 실험 결과를 비교한다. 종료 시각은 `settings.txt`와 `result.txt`의 UTC 시각으로 계산할 수 있다.
+
+## 6. 실제 실행 흐름으로 확인한 증거
+
+실험 시각은 모두 **2026-10-24 UTC**다. 로그에서 받은 종료 이유와 `run_case.sh`가 부여한 종료 이유를 구분한다.
+
+| 호출 | 관측된 앱 실행 흐름 | 종료/판정 | 원본 위치 |
+| --- | --- | --- | --- |
+| `oom before 45` | `MemoryWorker` Heap 25→275MB, RSS 16.18→266.22MiB | 33초, `MemoryGuard`, `app_exit=137` | [`oom-before`](../evidence/oom-before/) |
+| `oom after 50` | Heap 25→400MB, RSS 16.12→416.46MiB | 50초 관찰 후 실험기가 종료 (`143`) | [`oom-after`](../evidence/oom-after/) |
+| `cpu before 50` | `CpuWorker` 내부 `Current Load` 5.00→52.07% 및 임계치 위반 | 34초, 앱 종료 `143`. OS CPU 최대 5.94% | [`cpu-before`](../evidence/cpu-before/) |
+| `cpu after 50` | 내부 부하 상승과 `Cooldown complete`, MemoryWorker 작업 지속 | 50초 관찰 후 실험기가 종료 | [`cpu-after`](../evidence/cpu-after/) |
+| `deadlock before 40` | A→B, B→A 상호 락 대기, PID·TID 존속 및 `futex_wait` | 40초 관찰, 순환 대기 재현 | [`deadlock-before`](../evidence/deadlock-before/) |
+| `deadlock after 50` | `Scheduler`가 `All tasks completed.` 기록 | 50초 관찰, 교착 회피 | [`deadlock-after`](../evidence/deadlock-after/) |
+
+**해석상 주의:** CPU 로그의 `Current Load`는 애플리케이션 자체 지표이며 `monitor.tsv`의 Linux `/proc` CPU%와 일치하지 않는다. CPU 실측치와 프로그램 자체 보호 종료를 혼동하거나, 단순히 PID가 존재한다는 이유로 교착을 확정하지 않는다. `result.txt`의 `exit_code=143`은 실험기 SIGTERM에도 나타나므로 반드시 `reason` 및 앱 로그와 교차 확인한다.

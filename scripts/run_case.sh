@@ -6,7 +6,7 @@ fail() { printf 'ERROR: %s\n' "$*" >&2; exit 1; }
 [[ $# -ge 2 && $# -le 3 ]] || fail 'Usage: run_case.sh <oom|cpu|deadlock> <before|after> [seconds]'
 case_name=$1
 stage=$2
-seconds=${3:-120}
+seconds=${3:-50}
 [[ $seconds =~ ^[1-9][0-9]*$ ]] || fail 'Duration must be a positive integer.'
 [[ $stage == before || $stage == after ]] || fail 'Stage must be before or after.'
 (( EUID != 0 )) || fail 'Run as a non-root user.'

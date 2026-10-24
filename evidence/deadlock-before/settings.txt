@@ -1,0 +1,8 @@
+case=deadlock
+stage=before
+MEMORY_LIMIT=512
+CPU_MAX_OCCUPY=40
+MULTI_THREAD_ENABLE=true
+started_utc=2026-10-24T06:24:49Z
+max_observation_seconds=40
+binary_sha256=7e0a19cfa80ece6b547a5008273661f0d4d71e526e96b51e0d0f341dd1bb3e40
