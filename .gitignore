@@ -1,0 +1,7 @@
+# Supplied executable / local working directory (do not redistribute binaries).
+/agent-app-leak.zip
+/agent-leak-app-*
+/.lab/
+
+# Local editor files.
+.DS_Store
